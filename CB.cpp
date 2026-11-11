@@ -22,7 +22,7 @@ bool b36 = true, b37 = true, b38 = true, b39 = true, b40 = true;
 int getChoice(){
     int input;
     while (!(cin >> input)){// if failure on input by user
-        cout << " ╰┈➤ Invalid input ! " << endl << " ╰┈➤ Please enter a valid choice: ";
+        cout << "\033[31m ╰┈➤ Invalid input ! \033[0m" << endl << "\033[31m ╰┈➤ Please enter a valid choice: \033[0m";
     cin.clear(); // reset
     cin.ignore(1000, '\n');
 } return input;
@@ -400,7 +400,7 @@ void showBook(int id, int number){
     if (available){
         cout << "\033[33m [🟢 Available]\033[0m" << endl;
     }else{
-        cout << "\033[31m [🔴 Borrowed by \033[0m" << name << "]" << endl;
+        cout << "\033[31m [🔴 Borrowed by \033[0m" << name << "\033[31m]\033[0m" << endl;
     }
 }
 
@@ -413,23 +413,23 @@ void showBooks(){
 
     switch (genre){
     case 1:
-        cout << "\035[35mGENRE: FICTION\033[0m" << endl
+        cout << "\033[35m GENRE: FICTION\033[0m" << endl
              << endl;
         break;
     case 2:
-        cout << "\035[34mGENRE: FANTASY\033[30m" << endl
+        cout << "\033[35m GENRE: FANTASY\033[0m" << endl
              << endl;
         break;
     case 3:
-        cout << "\035[34mGENRE: MYSTERY\033[0m" << endl
-             << endl;
+        cout << "\033[35mGENRE: MYSTERY\033[0m" << endl
+              << endl;
         break;
     case 4:
-        cout << "\035[34mGENRE: ROMANCE\033[0m" << endl
+        cout << "\033[35mGENRE: ROMANCE\033[0m" << endl
              << endl;
         break;
     case 5:
-        cout << "\035[34mGENRE: SCIENCE\033[0m" << endl
+        cout << "\033[35mGENRE: SCIENCE\033[0m" << endl
              << endl;
         break;
     case 6:
