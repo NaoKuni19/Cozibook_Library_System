@@ -29,31 +29,31 @@ int getChoice(){
 }
 //library introductory message upon open
 void description(){
-    cout << "═══════════════════════════════════════════════" << endl;
-    cout << "         ---─ ⊹ ⊱꒰☆COZIBOOK SYSTEM☆꒱⊰ ⊹ ─---" << endl;
-    cout << "═══════════════════════════════════════════════" << endl;
+    cout << "\033[34m═══════════════════════════════════════════════\033[0m" << endl;
+    cout << "\033[33m         ---─ ⊹ ⊱꒰☆COZIBOOK SYSTEM☆꒱⊰ ⊹ ─---\033[0m" << endl;
+    cout << "\033[34m═══════════════════════════════════════════════\033[0m" << endl;
     cout << "「 This is the Cozy Library Book Borrowing System" << endl;
     cout << "   that allows registered members to browse, preview, " << endl;
     cout << "   select, and checkout any books of their liking. 」" << endl;
-    cout << "═══════════════════════════════════════════════" << endl;
+    cout << "\033[34m═══════════════════════════════════════════════\033[0m" << endl;
 }
 // section for logging in for the user and member verification
 void login(){
-    cout << endl << "Are you a library member? (1 or 2)" << endl;
+    cout << endl << "\033[33mAre you a library member? (1 or 2)\033[0m" << endl;
     cout << "1.│ Yes" << endl;
     cout << "2.│ No" << endl;
     cout << endl << "Enter choice: ";
     member = getChoice();
 
     while (member != 1 && member != 2){
-        cout << " ╰┈➤ Invalid choice. Enter 1 or 2: ";
+        cout << "\033[31m ╰┈➤ Invalid choice. Enter 1 or 2: \033[0m";
         member = getChoice();
     } if (member == 1){
         cout << "Enter your name: ";
         cin >> name;
         cout << endl << " ╰┈➤ Welcome, " << name << "!" << endl << endl;
     }else{
-        cout << " ╰┈➤ Only registered members can borrow books." << endl;
+        cout << "\033[31m ╰┈➤ Only registered members can borrow books.\033[0m" << endl;
     }
 }
 /// all books informations/ details
@@ -398,54 +398,54 @@ void showBook(int id, int number){
     cout << number << ".│ " << title << " - " << author;
 
     if (available){
-        cout << " [🟢 Available]" << endl;
+        cout << "\033[33m [🟢 Available]\033[0m" << endl;
     }else{
-        cout << " [🔴 Borrowed by " << name << "]" << endl;
+        cout << "\033[31m [🔴 Borrowed by \033[0m" << name << "]" << endl;
     }
 }
 
 // book list section and show genre title when choosing a genre
 void showBooks(){
-    cout << endl << "⊱ ───────── [ ˚.⋆  BOOK LIST‧₊˚. ] ───────── ⊰" << endl << endl;
+    cout << endl << "\033[34m⊱ ───────── [ ˚.⋆  BOOK LIST‧₊˚. ] ───────── ⊰\033[0m" << endl << endl;
 
     // calculates the starting book ID of the selected genre
     int start = (genre - 1) * 5 + 1;
 
     switch (genre){
     case 1:
-        cout << "GENRE: FICTION" << endl
+        cout << "\035[35mGENRE: FICTION\033[0m" << endl
              << endl;
         break;
     case 2:
-        cout << "GENRE: FANTASY" << endl
+        cout << "\035[34mGENRE: FANTASY\033[30m" << endl
              << endl;
         break;
     case 3:
-        cout << "GENRE: MYSTERY" << endl
+        cout << "\035[34mGENRE: MYSTERY\033[0m" << endl
              << endl;
         break;
     case 4:
-        cout << "GENRE: ROMANCE" << endl
+        cout << "\035[34mGENRE: ROMANCE\033[0m" << endl
              << endl;
         break;
     case 5:
-        cout << "GENRE: SCIENCE" << endl
+        cout << "\035[34mGENRE: SCIENCE\033[0m" << endl
              << endl;
         break;
     case 6:
-        cout << "GENRE: HISTORY" << endl
+        cout << "\033[35mGENRE: HISTORY\033[0m" << endl
              << endl;
         break;
     case 7:
-        cout << "GENRE: HORROR" << endl
+        cout << "\033[35mGENRE: HORROR\033[0m" << endl
              << endl;
         break;
     case 8:
-        cout << "GENRE: PHILOSOPHY" << endl
+        cout << "\033[35mGENRE: PHILOSOPHY\033[0m" << endl
              << endl;
         break;
     default:
-        cout << "╰┈➤ Invalid genre!" << endl;
+        cout << "\033[31m╰┈➤ Invalid genre!\033[0m" << endl;
         break;
     }
 
@@ -453,32 +453,32 @@ void showBooks(){
     for (int i = 1; i <= 5; i++){
         showBook(start + i - 1, i);
     }
-    cout << endl << "───────────────────────────────────" << endl;
+    cout << endl << "\033[34m───────────────────────────────────\033[0m" << endl;
 }
 
 // book summary and confirmation if wanna borrow :>
 int previewBook(int id){
     bookInfo(id);
 
-    cout << endl << "⊱ ────── [ ˚.⋆  BOOK OVERVIEW ‧₊˚. ] ────── ⊰" << endl << endl;
+    cout << endl << "\033[34m⊱ ────── [ ˚.⋆  BOOK OVERVIEW ‧₊˚. ] ────── ⊰\033[0m" << endl << endl;
     cout << "Title: " << title << endl;
     cout << "Author: " << author << endl;
     cout << "Genre: " << genreName << endl;
     cout << "About this book: " << summary << endl << endl;
-    cout << "───────────────────────────────────" << endl << endl;
+    cout << "\033[34m───────────────────────────────────\033[0m" << endl << endl;
 
     if (!available){
-        cout << " ╰┈➤ This book is already borrowed." << endl;
+        cout << "\033[31m ╰┈➤ This book is already borrowed.\033[0m" << endl;
         return 0;
     }
-    cout << endl << "Borrow this book?" << endl;
+    cout << endl << "\033[33mBorrow this book?\033[0m" << endl;
     cout << "1.│ Yes" << endl;
     cout << "2.│ No" << endl;
     cout << endl << "Enter choice: ";
     choice = getChoice();
 
     while (choice != 1 && choice != 2){
-        cout << " ╰┈➤ Invalid choice!" << endl << "      Enter 1 or 2: ";
+        cout << "\033[31m ╰┈➤ Invalid choice!\033[0m" << endl << "\033[33m      Enter 1 or 2: \033[0m";
         choice = getChoice();
     }if (choice == 1){
         return 1;
@@ -618,31 +618,31 @@ void borrowBook(int id){
 
     // adds the selected book title and author to the receipt
     // selection confirmation message
-    cout << "───────────────────────────────────" << endl;
-    cout << "      SUCCESSFULLY ADDED TO LIST       " << endl;
-    cout << "───────────────────────────────────" << endl;
+    cout << "\033[34m───────────────────────────────────\033[0m" << endl;
+    cout << "\033[33m      SUCCESSFULLY ADDED TO LIST       \033[0m" << endl;
+    cout << "\033[34m───────────────────────────────────\033[0m" << endl;
     cout << "Borrowed Title: " << title << " by " << author << endl;
     cout << "Current Status: Reserved for " << name << endl;
-    cout << "───────────────────────────────────" << endl;
+    cout << "\033[34m───────────────────────────────────\033[0m" << endl;
 }
 
 // overview of book/s chosen
 void showOverview(){
-    cout << endl << "⊱ ══════════════ [ ˚.⋆ BORROWING OVERVIEW ‧₊˚. ] ══════════════ ⊰" << endl;
+    cout << endl << "\033[34m⊱ ══════════════ [ ˚.⋆ BORROWING OVERVIEW ‧₊˚. ] ══════════════ ⊰\033[0m" << endl;
     cout << "Member: " << name << endl;
 
     if (receipt == ""){
-        cout << " ╰┈➤ No books selected." << endl;
+        cout << "\033[31m ╰┈➤ No books selected.\033[0m" << endl;
     }else{
         cout << "Books selected:" << endl;
         cout << receipt;
     }
-    cout << "═══════════════════════════════════════════════" << endl;
+    cout << "\033[34m═══════════════════════════════════════════════\033[0m" << endl;
 }
 
 // library Terms and Agreement
 int agreement(){
-    cout << endl << "⊱ ────── [ ˚.⋆ LIBRARY TERMS ‧₊˚. ] ────── ⊰" << endl;
+    cout << endl << "\033[34m⊱ ────── [ ˚.⋆ LIBRARY TERMS ‧₊˚. ] ────── ⊰\033[0m" << endl;
     cout << "1.│ Return books on time." << endl;
     cout << "2.│ Keep books clean and undamaged." << endl;
     cout << "3.│ Do not write or draw on library books." << endl;
@@ -661,7 +661,7 @@ int agreement(){
     choice = getChoice();
 
     while (choice != 1 && choice != 2){
-        cout << "╰┈➤ Invalid choice. Please enter 1 or 2: ";
+        cout << "\033[31m╰┈➤ Invalid choice. Please enter 1 or 2: \033[0m";
         choice = getChoice();
     }
     return choice;
@@ -669,18 +669,18 @@ int agreement(){
 
 // resibo
 void printReceipt(){
-    cout << endl << " ══════════════【BORROWING RECEIPT】══════════════" << endl;
+    cout << endl << "\033[34m ══════════════【BORROWING RECEIPT】══════════════\033[0m" << endl;
     cout << "Member: " << name << endl;
     cout << "Borrowed books:" << endl;
     cout << receipt;
-    cout << "───────────────────────────────────" << endl;
-    cout << "RETRIEVAL TRACKING STATUS:" << endl;
+    cout << "\033[34m───────────────────────────────────\033[m" << endl;
+    cout << "\033[33mRETRIEVAL TRACKING STATUS:\033[0m" << endl;
     cout << "- Return Deadline: 14 days from today" << endl;
     cout << "- Retrieval Location: Main Desk / Drop Box" << endl;
     cout << "- Tracking Status: ACTIVE (Awaiting Return)" << endl;
-    cout << "───────────────────────────────────" << endl;
+    cout << "\033[34m───────────────────────────────────\033[0m" << endl;
     cout << "Please return your books on time." << endl;
-    cout << "═══════════════════════════════════════════════" << endl;
+    cout << "\033[34m═══════════════════════════════════════════════\033[0m" << endl;
 }
 
 // Recheck after user is finished
@@ -776,11 +776,11 @@ int main(){
     login();
 
     if (member != 1){
-        cout << " ╰┈➤ Session ended for non-member." << endl;
+        cout << "\033[33m ╰┈➤ Session ended for non-member.\033[0m" << endl;
     }else{
         do{
             cout << endl;
-            cout << "⊱ ────── [ ˚.⋆  GENRE SELECTION‧₊˚. ] ────── ⊰" << endl;
+            cout << "\033[34m⊱ ────── [ ˚.⋆  GENRE SELECTION‧₊˚. ] ────── ⊰\033[0m" << endl;
             cout << endl;
             cout << "1.│ Fiction" << endl;
             cout << "2.│ Fantasy" << endl;
@@ -794,7 +794,7 @@ int main(){
             cout << "0.│ Proceed to checkout" << endl;
             cout << "9.│ Exit without borrowing" << endl;
             cout << endl;
-            cout << "Choose an option: ";
+            cout << "\033[33mChoose an option: \033[0m";
 
             genre = getChoice();
 
@@ -824,7 +824,7 @@ int main(){
                             }
                         }else{
                             cout << endl;
-                            cout << " ╰┈➤ This book is already borrowed." << endl;
+                            cout << "\033[31m ╰┈➤ This book is already borrowed.\033[0m" << endl;
                             showList = false;
                         }
                     }else if (choice == 6){
@@ -832,7 +832,7 @@ int main(){
                     }else if (choice == 7){
                         checkout = 1;
                     }else{
-                        cout << " ╰┈➤ Invalid choice. Please select 1 to 7." << endl;
+                        cout << "\033[31m ╰┈➤ Invalid choice. Please select 1 to 7.\033[0m" << endl;
                     }
                 }
             }else if (genre == 0){
@@ -840,7 +840,7 @@ int main(){
             }else if (genre == 9){
                 checkout = 1;
             }else{
-                cout << "╰┈➤ Invalid genre. Please select 0 to 9." << endl;
+                cout << "\033[31m╰┈➤ Invalid genre. Please select 0 to 9.\033[0m" << endl;
             }
         }
 
@@ -850,20 +850,18 @@ int main(){
             if (agreement() == 1){
                 printReceipt();
                 cout << endl;
-                cout << " ╰┈➤ Thank you for using COZIBOOK!" << endl;
+                cout << "\033[33m ╰┈➤ Thank you for using COZIBOOK!\033[0m" << endl;
             }else{
                 cout << endl;
-                cout << " ╰┈➤ You declined the terms." << endl;
-                cout << " ╰┈➤ Your selected books have been released." << endl;
-                cout << " ╰┈➤ No borrowing was completed." << endl;
+                cout << "\033[31m ╰┈➤ You declined the terms.\033[0m" << endl;
+                cout << "\033[31m ╰┈➤ Your selected books have been released.\033[0m" << endl;
+                cout << "\033[31m ╰┈➤ No borrowing was completed.\033[0m" << endl;
             }
         }else{
             cout << endl;
-            cout << " ╰┈➤ No books were selected." << endl;
+            cout << "\033[31m ╰┈➤ No books were selected.\033[0m" << endl;
             cout << " ╰┈➤ Thank you for visiting COZIBOOK!" << endl;
         }
     }
     return 0;
 }
-
-
